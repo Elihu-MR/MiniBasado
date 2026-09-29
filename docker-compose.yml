@@ -1,0 +1,18 @@
+services:
+  # Servicio de Base de Datos
+  db:
+    image: postgres:15-alpine # Usamos una imagen ligera de PostgreSQL 15
+    container_name: mikedb_container_lab7
+    restart: always
+    environment:
+      POSTGRES_USER: mike
+      POSTGRES_PASSWORD: super_secret_password
+      POSTGRES_DB: mikedb
+    ports:
+      - "5433:5432" # Mapea el puerto del contenedor al de tu maquina local
+    volumes:
+      - postgres_data:/var/lib/postgresql/data # Persistencia de datos
+
+# Definición del volumen para que los datos no se pierdan al reiniciar
+volumes:
+  postgres_data:
