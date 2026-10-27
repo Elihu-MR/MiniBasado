@@ -1,0 +1,22 @@
+# Entorno virtual (vive en la misma carpeta del proyecto)
+Lib/
+Include/
+Scripts/
+share/
+pyvenv.cfg
+
+# Credenciales
+.env
+
+# Datos locales de MinIO
+minio_data/
+
+# Caché de Python
+__pycache__/
+*.pyc
+
+# Archivos del sistema y del editor
+.lock
+.vscode/
+.idea/
+Thumbs.db

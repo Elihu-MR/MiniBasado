@@ -1,0 +1,24 @@
+Unido: 851f4a5eb58e7fe09ecc8181 agent-12f1865a3bbf running
+chat > Kept you waiting, huh? This Metal Gear is quite solid.
+intent -> up {'status': 'intent_received', 'agent_id': 'agent-12f1865a3bbf', 'direction': 'up', 'requested_direction': 'up', 'detail': 'El controlador de seguridad verificará la dirección en cada tick.'}
+intent -> up {'status': 'intent_received', 'agent_id': 'agent-12f1865a3bbf', 'direction': 'up', 'requested_direction': 'up', 'detail': 'El controlador de seguridad verificará la dirección en cada tick.'}
+tick 300 score 3 len 6
+intent -> down {'status': 'intent_received', 'agent_id': 'agent-12f1865a3bbf', 'direction': 'down', 'requested_direction': 'down', 'detail': 'El controlador de seguridad verificará la dirección en cada tick.'}
+tick 350 score 4 len 7
+intent -> right {'status': 'intent_received', 'agent_id': 'agent-12f1865a3bbf', 'direction': 'right', 'requested_direction': 'right', 'detail': 'El controlador de seguridad verificará la dirección en cada tick.'}
+intent -> left {'status': 'intent_received', 'agent_id': 'agent-12f1865a3bbf', 'direction': 'left', 'requested_direction': 'left', 'detail': 'El controlador de seguridad verificará la dirección en cada tick.'}
+tick 400 score 8 len 8
+intent -> down {'status': 'intent_received', 'agent_id': 'agent-12f1865a3bbf', 'direction': 'down', 'requested_direction': 'down', 'detail': 'El controlador de seguridad verificará la dirección en cada tick.'}
+chat > SolidSnake y SolidSnake MkII somos equipo. Los demás, corran.
+intent -> left {'status': 'intent_received', 'agent_id': 'agent-12f1865a3bbf', 'direction': 'left', 'requested_direction': 'left', 'detail': 'El controlador de seguridad verificará la dirección en cada tick.'}
+tick 450 score 13 len 13
+Reanudando: 851f4a5eb58e7fe09ecc8181 agent-12f1865a3bbf
+intent -> up {'status': 'intent_received', 'agent_id': 'agent-12f1865a3bbf', 'direction': 'up', 'requested_direction': 'up', 'detail': 'El controlador de seguridad verificará la dirección en cada tick.'}
+tick 500 score 14 len 14
+intent -> down {'status': 'intent_received', 'agent_id': 'agent-12f1865a3bbf', 'direction': 'down', 'requested_direction': 'down', 'detail': 'El controlador de seguridad verificará la dirección en cada tick.'}
+intent -> right {'status': 'intent_received', 'agent_id': 'agent-12f1865a3bbf', 'direction': 'right', 'requested_direction': 'right', 'detail': 'El controlador de seguridad verificará la dirección en cada tick.'}
+chat > Salamanca, estamos contigo. Antigravity, tus días están contados.
+tick 550 score 15 len 15
+Reanudando: 851f4a5eb58e7fe09ecc8181 agent-12f1865a3bbf
+intent -> left {'status': 'intent_received', 'agent_id': 'agent-12f1865a3bbf', 'direction': 'left', 'requested_direction': 'left', 'detail': 'El controlador de seguridad verificará la dirección en cada tick.'}
+Fin. winner: agent-7854e9d17b89 [('Punished Snake', 62), ('Antigravity', 42), ('Salamanca', 64), ('Culebron', 0), ('Why are you blue?', 55), ('La Pulga', 47), ('SolidSnake', 40), ('Mamberroi', 0), ('lechososgg', 18), ('agente citlali', 19), ('Mike Gaming', 41), ('agente citlali 2', 51), ('SolidSnake MkII', 17), ('CodosPercudidos', 0), ('agente chalio', 7), ('defensorLechosoGG', 5)]

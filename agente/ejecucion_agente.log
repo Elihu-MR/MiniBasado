@@ -1,0 +1,785 @@
+>>> listar_tickets_pendientes({})
+{
+  "carpeta": "C:\\Users\\elihu\\Videos\\lab10\\tickets",
+  "pendientes": [
+    "ticket_oxxo.png",
+    "ticket_soriana.png",
+    "ticket_walmart.png"
+  ],
+  "ya_registrados": [],
+  "fotos_de_productos": [
+    "productos/agua.png",
+    "productos/huevo.png",
+    "productos/jamon.png",
+    "productos/jitomate.png",
+    "productos/leche.png",
+    "productos/lechuga.png",
+    "productos/mantequilla.png",
+    "productos/pollo.png",
+    "productos/queso.png",
+    "productos/refresco.png",
+    "productos/sandwich.png",
+    "productos/yogurt.png"
+  ]
+}
+
+>>> obtener_o_crear_refrigerador({})
+{
+  "user_id": 1,
+  "name": "Refrigerador principal",
+  "brand": "Mabe",
+  "esp32_device_id": "esp32-8f2a065d",
+  "capacity_liters": 400,
+  "is_active": true,
+  "id": 1,
+  "created_at": "2026-10-15T01:48:16.928451"
+}
+
+>>> registrar_ticket({"refrigerator_id": 1, "image_path": "ticket_soriana.png", "store_name": "Soriana Hiper", "purchase_date": "2026-10-12", "raw_text": "SORIANA HIPER - Av. Universidad 1200, Ags.\n2 LECHE ENTERA LALA 1L 57.00\n1 HUEVO BLANCO 12 PZ 54.90\n1 JAMON DE PAVO FUD 250G 46.00\n1 YOGURT NATURAL 1KG 39.90\nTOTAL $197.80"})
+{
+  "user_id": 1,
+  "refrigerator_id": 1,
+  "store_name": "Soriana Hiper",
+  "purchase_date": "2026-10-12",
+  "ticket_image_url": "http://localhost:9000/fastapi-images/tickets/52725f8bc17142ed9c7fb972d2d4e91d.png",
+  "raw_text": "archivo: ticket_soriana.png\nSORIANA HIPER - Av. Universidad 1200, Ags.\n2 LECHE ENTERA LALA 1L 57.00\n1 HUEVO BLANCO 12 PZ 54.90\n1 JAMON DE PAVO FUD 250G 46.00\n1 YOGURT NATURAL 1KG 39.90\nTOTAL $197.80",
+  "processed_at": false,
+  "id": 1,
+  "created_at": "2026-10-15T01:48:17.201446"
+}
+
+>>> registrar_alimento({"ticket_id": 1, "refrigerator_id": 1, "name": "Leche entera Lala 1L", "category": "Lácteos", "quantity": 2, "unit": "L", "purchase_date": "2026-10-12", "expiration_date": "2026-10-19", "price": 57.0, "product_image_path": "productos/leche.png"})
+{
+  "food": {
+    "refrigerator_id": 1,
+    "name": "Leche entera Lala 1L",
+    "category": "Lácteos",
+    "quantity": "2.00",
+    "unit": "L",
+    "purchase_date": "2026-10-12",
+    "expiration_date": "2026-10-19",
+    "status": "fresh",
+    "id": 1,
+    "created_at": "2026-10-15T01:48:17.250198",
+    "updated_at": "2026-10-15T01:48:17.250210"
+  },
+  "images": [
+    {
+      "food_id": 1,
+      "ticket_id": 1,
+      "image_url": "http://localhost:9000/fastapi-images/tickets/52725f8bc17142ed9c7fb972d2d4e91d.png",
+      "image_type": "ticket",
+      "ocr_extracted_text": "Leche entera Lala 1L x2.0 L $57.00",
+      "ai_analysis": {
+        "price": 57.0,
+        "store": "Soriana Hiper",
+        "source": "agente-mcp"
+      },
+      "id": 1
+    },
+    {
+      "food_id": 1,
+      "ticket_id": 1,
+      "image_url": "http://localhost:9000/fastapi-images/foods/be0f5bd8f3584fc78b5df75efa74e307.png",
+      "image_type": "food",
+      "ocr_extracted_text": null,
+      "ai_analysis": {
+        "price": 57.0,
+        "store": "Soriana Hiper",
+        "source": "agente-mcp"
+      },
+      "id": 2
+    }
+  ]
+}
+
+>>> registrar_alimento({"ticket_id": 1, "refrigerator_id": 1, "name": "Huevo blanco 12 pz", "category": "Huevo", "quantity": 12, "unit": "pz", "purchase_date": "2026-10-12", "expiration_date": "2026-11-02", "price": 54.9, "product_image_path": "productos/huevo.png"})
+{
+  "food": {
+    "refrigerator_id": 1,
+    "name": "Huevo blanco 12 pz",
+    "category": "Huevo",
+    "quantity": "12.00",
+    "unit": "pz",
+    "purchase_date": "2026-10-12",
+    "expiration_date": "2026-11-02",
+    "status": "fresh",
+    "id": 2,
+    "created_at": "2026-10-15T01:48:17.478290",
+    "updated_at": "2026-10-15T01:48:17.478300"
+  },
+  "images": [
+    {
+      "food_id": 2,
+      "ticket_id": 1,
+      "image_url": "http://localhost:9000/fastapi-images/tickets/52725f8bc17142ed9c7fb972d2d4e91d.png",
+      "image_type": "ticket",
+      "ocr_extracted_text": "Huevo blanco 12 pz x12.0 pz $54.90",
+      "ai_analysis": {
+        "price": 54.9,
+        "store": "Soriana Hiper",
+        "source": "agente-mcp"
+      },
+      "id": 3
+    },
+    {
+      "food_id": 2,
+      "ticket_id": 1,
+      "image_url": "http://localhost:9000/fastapi-images/foods/f695d813e0424a0389cde3936e74faf5.png",
+      "image_type": "food",
+      "ocr_extracted_text": null,
+      "ai_analysis": {
+        "price": 54.9,
+        "store": "Soriana Hiper",
+        "source": "agente-mcp"
+      },
+      "id": 4
+    }
+  ]
+}
+
+>>> registrar_alimento({"ticket_id": 1, "refrigerator_id": 1, "name": "Jamón de pavo FUD 250g", "category": "Carnes frías", "quantity": 0.25, "unit": "kg", "purchase_date": "2026-10-12", "expiration_date": "2026-10-19", "price": 46.0, "product_image_path": "productos/jamon.png"})
+{
+  "food": {
+    "refrigerator_id": 1,
+    "name": "Jamón de pavo FUD 250g",
+    "category": "Carnes frías",
+    "quantity": "0.25",
+    "unit": "kg",
+    "purchase_date": "2026-10-12",
+    "expiration_date": "2026-10-19",
+    "status": "fresh",
+    "id": 3,
+    "created_at": "2026-10-15T01:48:17.717428",
+    "updated_at": "2026-10-15T01:48:17.717437"
+  },
+  "images": [
+    {
+      "food_id": 3,
+      "ticket_id": 1,
+      "image_url": "http://localhost:9000/fastapi-images/tickets/52725f8bc17142ed9c7fb972d2d4e91d.png",
+      "image_type": "ticket",
+      "ocr_extracted_text": "Jamón de pavo FUD 250g x0.25 kg $46.00",
+      "ai_analysis": {
+        "price": 46.0,
+        "store": "Soriana Hiper",
+        "source": "agente-mcp"
+      },
+      "id": 5
+    },
+    {
+      "food_id": 3,
+      "ticket_id": 1,
+      "image_url": "http://localhost:9000/fastapi-images/foods/4606ac54d84141b08e6ed77f7c6653d8.png",
+      "image_type": "food",
+      "ocr_extracted_text": null,
+      "ai_analysis": {
+        "price": 46.0,
+        "store": "Soriana Hiper",
+        "source": "agente-mcp"
+      },
+      "id": 6
+    }
+  ]
+}
+
+>>> registrar_alimento({"ticket_id": 1, "refrigerator_id": 1, "name": "Yogurt natural 1kg", "category": "Lácteos", "quantity": 1, "unit": "kg", "purchase_date": "2026-10-12", "expiration_date": "2026-10-26", "price": 39.9, "product_image_path": "productos/yogurt.png"})
+{
+  "food": {
+    "refrigerator_id": 1,
+    "name": "Yogurt natural 1kg",
+    "category": "Lácteos",
+    "quantity": "1.00",
+    "unit": "kg",
+    "purchase_date": "2026-10-12",
+    "expiration_date": "2026-10-26",
+    "status": "fresh",
+    "id": 4,
+    "created_at": "2026-10-15T01:48:17.915368",
+    "updated_at": "2026-10-15T01:48:17.915378"
+  },
+  "images": [
+    {
+      "food_id": 4,
+      "ticket_id": 1,
+      "image_url": "http://localhost:9000/fastapi-images/tickets/52725f8bc17142ed9c7fb972d2d4e91d.png",
+      "image_type": "ticket",
+      "ocr_extracted_text": "Yogurt natural 1kg x1.0 kg $39.90",
+      "ai_analysis": {
+        "price": 39.9,
+        "store": "Soriana Hiper",
+        "source": "agente-mcp"
+      },
+      "id": 7
+    },
+    {
+      "food_id": 4,
+      "ticket_id": 1,
+      "image_url": "http://localhost:9000/fastapi-images/foods/8cdc4049ca754badb7c63ae72f6147b1.png",
+      "image_type": "food",
+      "ocr_extracted_text": null,
+      "ai_analysis": {
+        "price": 39.9,
+        "store": "Soriana Hiper",
+        "source": "agente-mcp"
+      },
+      "id": 8
+    }
+  ]
+}
+
+>>> marcar_ticket_procesado({"ticket_id": 1})
+{
+  "user_id": 1,
+  "refrigerator_id": 1,
+  "store_name": "Soriana Hiper",
+  "purchase_date": "2026-10-12",
+  "ticket_image_url": "http://localhost:9000/fastapi-images/tickets/52725f8bc17142ed9c7fb972d2d4e91d.png",
+  "raw_text": "archivo: ticket_soriana.png\nSORIANA HIPER - Av. Universidad 1200, Ags.\n2 LECHE ENTERA LALA 1L 57.00\n1 HUEVO BLANCO 12 PZ 54.90\n1 JAMON DE PAVO FUD 250G 46.00\n1 YOGURT NATURAL 1KG 39.90\nTOTAL $197.80",
+  "processed_at": true,
+  "id": 1,
+  "created_at": "2026-10-15T01:48:17.201446"
+}
+
+>>> registrar_ticket({"refrigerator_id": 1, "image_path": "ticket_walmart.png", "store_name": "Walmart Supercenter", "purchase_date": "2026-10-09", "raw_text": "WALMART SUPERCENTER - Blvd. Aguascalientes 4512\n1.2 POLLO PECHUGA KG 154.80\n1.0 JITOMATE SALADET KG 32.00\n1 LECHUGA ROMANA PZ 22.50\n1 QUESO PANELA 400G 68.00\n2 REFRESCO COLA 2L 72.00\nTOTAL $349.30"})
+{
+  "user_id": 1,
+  "refrigerator_id": 1,
+  "store_name": "Walmart Supercenter",
+  "purchase_date": "2026-10-09",
+  "ticket_image_url": "http://localhost:9000/fastapi-images/tickets/cd4bbc56a50d4e3a9652c9b370a08747.png",
+  "raw_text": "archivo: ticket_walmart.png\nWALMART SUPERCENTER - Blvd. Aguascalientes 4512\n1.2 POLLO PECHUGA KG 154.80\n1.0 JITOMATE SALADET KG 32.00\n1 LECHUGA ROMANA PZ 22.50\n1 QUESO PANELA 400G 68.00\n2 REFRESCO COLA 2L 72.00\nTOTAL $349.30",
+  "processed_at": false,
+  "id": 2,
+  "created_at": "2026-10-15T01:48:18.477156"
+}
+
+>>> registrar_alimento({"ticket_id": 2, "refrigerator_id": 1, "name": "Pechuga de pollo", "category": "Carnes", "quantity": 1.2, "unit": "kg", "purchase_date": "2026-10-09", "expiration_date": "2026-10-11", "price": 154.8, "product_image_path": "productos/pollo.png"})
+{
+  "food": {
+    "refrigerator_id": 1,
+    "name": "Pechuga de pollo",
+    "category": "Carnes",
+    "quantity": "1.20",
+    "unit": "kg",
+    "purchase_date": "2026-10-09",
+    "expiration_date": "2026-10-11",
+    "status": "expired",
+    "id": 5,
+    "created_at": "2026-10-15T01:48:18.502214",
+    "updated_at": "2026-10-15T01:48:18.502223"
+  },
+  "images": [
+    {
+      "food_id": 5,
+      "ticket_id": 2,
+      "image_url": "http://localhost:9000/fastapi-images/tickets/cd4bbc56a50d4e3a9652c9b370a08747.png",
+      "image_type": "ticket",
+      "ocr_extracted_text": "Pechuga de pollo x1.2 kg $154.80",
+      "ai_analysis": {
+        "price": 154.8,
+        "store": "Walmart Supercenter",
+        "source": "agente-mcp"
+      },
+      "id": 9
+    },
+    {
+      "food_id": 5,
+      "ticket_id": 2,
+      "image_url": "http://localhost:9000/fastapi-images/foods/d84cd517782c4879b04b153d33d0bfb4.png",
+      "image_type": "food",
+      "ocr_extracted_text": null,
+      "ai_analysis": {
+        "price": 154.8,
+        "store": "Walmart Supercenter",
+        "source": "agente-mcp"
+      },
+      "id": 10
+    }
+  ]
+}
+
+>>> registrar_alimento({"ticket_id": 2, "refrigerator_id": 1, "name": "Jitomate saladet", "category": "Frutas y verduras", "quantity": 1.0, "unit": "kg", "purchase_date": "2026-10-09", "expiration_date": "2026-10-16", "price": 32.0, "product_image_path": "productos/jitomate.png"})
+{
+  "food": {
+    "refrigerator_id": 1,
+    "name": "Jitomate saladet",
+    "category": "Frutas y verduras",
+    "quantity": "1.00",
+    "unit": "kg",
+    "purchase_date": "2026-10-09",
+    "expiration_date": "2026-10-16",
+    "status": "expiring",
+    "id": 6,
+    "created_at": "2026-10-15T01:48:18.748470",
+    "updated_at": "2026-10-15T01:48:18.748475"
+  },
+  "images": [
+    {
+      "food_id": 6,
+      "ticket_id": 2,
+      "image_url": "http://localhost:9000/fastapi-images/tickets/cd4bbc56a50d4e3a9652c9b370a08747.png",
+      "image_type": "ticket",
+      "ocr_extracted_text": "Jitomate saladet x1.0 kg $32.00",
+      "ai_analysis": {
+        "price": 32.0,
+        "store": "Walmart Supercenter",
+        "source": "agente-mcp"
+      },
+      "id": 11
+    },
+    {
+      "food_id": 6,
+      "ticket_id": 2,
+      "image_url": "http://localhost:9000/fastapi-images/foods/ae01c6fd9f5948a78046c9f263c9242c.png",
+      "image_type": "food",
+      "ocr_extracted_text": null,
+      "ai_analysis": {
+        "price": 32.0,
+        "store": "Walmart Supercenter",
+        "source": "agente-mcp"
+      },
+      "id": 12
+    }
+  ]
+}
+
+>>> registrar_alimento({"ticket_id": 2, "refrigerator_id": 1, "name": "Lechuga romana", "category": "Frutas y verduras", "quantity": 1, "unit": "pz", "purchase_date": "2026-10-09", "expiration_date": "2026-10-14", "price": 22.5, "product_image_path": "productos/lechuga.png"})
+{
+  "food": {
+    "refrigerator_id": 1,
+    "name": "Lechuga romana",
+    "category": "Frutas y verduras",
+    "quantity": "1.00",
+    "unit": "pz",
+    "purchase_date": "2026-10-09",
+    "expiration_date": "2026-10-14",
+    "status": "expiring",
+    "id": 7,
+    "created_at": "2026-10-15T01:48:18.947733",
+    "updated_at": "2026-10-15T01:48:18.947738"
+  },
+  "images": [
+    {
+      "food_id": 7,
+      "ticket_id": 2,
+      "image_url": "http://localhost:9000/fastapi-images/tickets/cd4bbc56a50d4e3a9652c9b370a08747.png",
+      "image_type": "ticket",
+      "ocr_extracted_text": "Lechuga romana x1.0 pz $22.50",
+      "ai_analysis": {
+        "price": 22.5,
+        "store": "Walmart Supercenter",
+        "source": "agente-mcp"
+      },
+      "id": 13
+    },
+    {
+      "food_id": 7,
+      "ticket_id": 2,
+      "image_url": "http://localhost:9000/fastapi-images/foods/9211c1f563234f6aa5713e7b49ed6240.png",
+      "image_type": "food",
+      "ocr_extracted_text": null,
+      "ai_analysis": {
+        "price": 22.5,
+        "store": "Walmart Supercenter",
+        "source": "agente-mcp"
+      },
+      "id": 14
+    }
+  ]
+}
+
+>>> registrar_alimento({"ticket_id": 2, "refrigerator_id": 1, "name": "Queso panela 400g", "category": "Lácteos", "quantity": 0.4, "unit": "kg", "purchase_date": "2026-10-09", "expiration_date": "2026-10-19", "price": 68.0, "product_image_path": "productos/queso.png"})
+{
+  "food": {
+    "refrigerator_id": 1,
+    "name": "Queso panela 400g",
+    "category": "Lácteos",
+    "quantity": "0.40",
+    "unit": "kg",
+    "purchase_date": "2026-10-09",
+    "expiration_date": "2026-10-19",
+    "status": "fresh",
+    "id": 8,
+    "created_at": "2026-10-15T01:48:19.119361",
+    "updated_at": "2026-10-15T01:48:19.119370"
+  },
+  "images": [
+    {
+      "food_id": 8,
+      "ticket_id": 2,
+      "image_url": "http://localhost:9000/fastapi-images/tickets/cd4bbc56a50d4e3a9652c9b370a08747.png",
+      "image_type": "ticket",
+      "ocr_extracted_text": "Queso panela 400g x0.4 kg $68.00",
+      "ai_analysis": {
+        "price": 68.0,
+        "store": "Walmart Supercenter",
+        "source": "agente-mcp"
+      },
+      "id": 15
+    },
+    {
+      "food_id": 8,
+      "ticket_id": 2,
+      "image_url": "http://localhost:9000/fastapi-images/foods/0155c6801706495c9e4f772b3625ab3a.png",
+      "image_type": "food",
+      "ocr_extracted_text": null,
+      "ai_analysis": {
+        "price": 68.0,
+        "store": "Walmart Supercenter",
+        "source": "agente-mcp"
+      },
+      "id": 16
+    }
+  ]
+}
+
+>>> registrar_alimento({"ticket_id": 2, "refrigerator_id": 1, "name": "Refresco de cola 2L", "category": "Bebidas", "quantity": 4, "unit": "L", "purchase_date": "2026-10-09", "expiration_date": "2027-04-07", "price": 72.0, "product_image_path": "productos/refresco.png"})
+{
+  "food": {
+    "refrigerator_id": 1,
+    "name": "Refresco de cola 2L",
+    "category": "Bebidas",
+    "quantity": "4.00",
+    "unit": "L",
+    "purchase_date": "2026-10-09",
+    "expiration_date": "2027-04-07",
+    "status": "fresh",
+    "id": 9,
+    "created_at": "2026-10-15T01:48:19.358269",
+    "updated_at": "2026-10-15T01:48:19.358275"
+  },
+  "images": [
+    {
+      "food_id": 9,
+      "ticket_id": 2,
+      "image_url": "http://localhost:9000/fastapi-images/tickets/cd4bbc56a50d4e3a9652c9b370a08747.png",
+      "image_type": "ticket",
+      "ocr_extracted_text": "Refresco de cola 2L x4.0 L $72.00",
+      "ai_analysis": {
+        "price": 72.0,
+        "store": "Walmart Supercenter",
+        "source": "agente-mcp"
+      },
+      "id": 17
+    },
+    {
+      "food_id": 9,
+      "ticket_id": 2,
+      "image_url": "http://localhost:9000/fastapi-images/foods/9c4ddd8f52294a37b229ed861b38b63b.png",
+      "image_type": "food",
+      "ocr_extracted_text": null,
+      "ai_analysis": {
+        "price": 72.0,
+        "store": "Walmart Supercenter",
+        "source": "agente-mcp"
+      },
+      "id": 18
+    }
+  ]
+}
+
+>>> marcar_ticket_procesado({"ticket_id": 2})
+{
+  "user_id": 1,
+  "refrigerator_id": 1,
+  "store_name": "Walmart Supercenter",
+  "purchase_date": "2026-10-09",
+  "ticket_image_url": "http://localhost:9000/fastapi-images/tickets/cd4bbc56a50d4e3a9652c9b370a08747.png",
+  "raw_text": "archivo: ticket_walmart.png\nWALMART SUPERCENTER - Blvd. Aguascalientes 4512\n1.2 POLLO PECHUGA KG 154.80\n1.0 JITOMATE SALADET KG 32.00\n1 LECHUGA ROMANA PZ 22.50\n1 QUESO PANELA 400G 68.00\n2 REFRESCO COLA 2L 72.00\nTOTAL $349.30",
+  "processed_at": true,
+  "id": 2,
+  "created_at": "2026-10-15T01:48:18.477156"
+}
+
+>>> registrar_ticket({"refrigerator_id": 1, "image_path": "ticket_oxxo.png", "store_name": "OXXO", "purchase_date": "2026-10-14", "raw_text": "OXXO - Calle Madero 301, Centro\n2 AGUA NATURAL 1.5L 34.00\n1 MANTEQUILLA 90G 24.50\n1 SANDWICH JAMON QUESO 42.00\nTOTAL $100.50"})
+{
+  "user_id": 1,
+  "refrigerator_id": 1,
+  "store_name": "OXXO",
+  "purchase_date": "2026-10-14",
+  "ticket_image_url": "http://localhost:9000/fastapi-images/tickets/3f0c45b9302645d6aca2b4cc3b4d81ea.png",
+  "raw_text": "archivo: ticket_oxxo.png\nOXXO - Calle Madero 301, Centro\n2 AGUA NATURAL 1.5L 34.00\n1 MANTEQUILLA 90G 24.50\n1 SANDWICH JAMON QUESO 42.00\nTOTAL $100.50",
+  "processed_at": false,
+  "id": 3,
+  "created_at": "2026-10-15T01:48:19.862238"
+}
+
+>>> registrar_alimento({"ticket_id": 3, "refrigerator_id": 1, "name": "Agua natural 1.5L", "category": "Bebidas", "quantity": 3, "unit": "L", "purchase_date": "2026-10-14", "expiration_date": "2027-10-14", "price": 34.0, "product_image_path": "productos/agua.png"})
+{
+  "food": {
+    "refrigerator_id": 1,
+    "name": "Agua natural 1.5L",
+    "category": "Bebidas",
+    "quantity": "3.00",
+    "unit": "L",
+    "purchase_date": "2026-10-14",
+    "expiration_date": "2027-10-14",
+    "status": "fresh",
+    "id": 10,
+    "created_at": "2026-10-15T01:48:19.893491",
+    "updated_at": "2026-10-15T01:48:19.893500"
+  },
+  "images": [
+    {
+      "food_id": 10,
+      "ticket_id": 3,
+      "image_url": "http://localhost:9000/fastapi-images/tickets/3f0c45b9302645d6aca2b4cc3b4d81ea.png",
+      "image_type": "ticket",
+      "ocr_extracted_text": "Agua natural 1.5L x3.0 L $34.00",
+      "ai_analysis": {
+        "price": 34.0,
+        "store": "OXXO",
+        "source": "agente-mcp"
+      },
+      "id": 19
+    },
+    {
+      "food_id": 10,
+      "ticket_id": 3,
+      "image_url": "http://localhost:9000/fastapi-images/foods/c00eb883000c4d6385dd5b5a18aa9969.png",
+      "image_type": "food",
+      "ocr_extracted_text": null,
+      "ai_analysis": {
+        "price": 34.0,
+        "store": "OXXO",
+        "source": "agente-mcp"
+      },
+      "id": 20
+    }
+  ]
+}
+
+>>> registrar_alimento({"ticket_id": 3, "refrigerator_id": 1, "name": "Mantequilla 90g", "category": "Lácteos", "quantity": 0.09, "unit": "kg", "purchase_date": "2026-10-14", "expiration_date": "2026-12-13", "price": 24.5, "product_image_path": "productos/mantequilla.png"})
+{
+  "food": {
+    "refrigerator_id": 1,
+    "name": "Mantequilla 90g",
+    "category": "Lácteos",
+    "quantity": "0.09",
+    "unit": "kg",
+    "purchase_date": "2026-10-14",
+    "expiration_date": "2026-12-13",
+    "status": "fresh",
+    "id": 11,
+    "created_at": "2026-10-15T01:48:20.124216",
+    "updated_at": "2026-10-15T01:48:20.124221"
+  },
+  "images": [
+    {
+      "food_id": 11,
+      "ticket_id": 3,
+      "image_url": "http://localhost:9000/fastapi-images/tickets/3f0c45b9302645d6aca2b4cc3b4d81ea.png",
+      "image_type": "ticket",
+      "ocr_extracted_text": "Mantequilla 90g x0.09 kg $24.50",
+      "ai_analysis": {
+        "price": 24.5,
+        "store": "OXXO",
+        "source": "agente-mcp"
+      },
+      "id": 21
+    },
+    {
+      "food_id": 11,
+      "ticket_id": 3,
+      "image_url": "http://localhost:9000/fastapi-images/foods/58fb9f58f42c4e93be2ebca1e7edc863.png",
+      "image_type": "food",
+      "ocr_extracted_text": null,
+      "ai_analysis": {
+        "price": 24.5,
+        "store": "OXXO",
+        "source": "agente-mcp"
+      },
+      "id": 22
+    }
+  ]
+}
+
+>>> registrar_alimento({"ticket_id": 3, "refrigerator_id": 1, "name": "Sándwich jamón y queso", "category": "Preparados", "quantity": 1, "unit": "pz", "purchase_date": "2026-10-14", "expiration_date": "2026-10-16", "price": 42.0, "product_image_path": "productos/sandwich.png"})
+{
+  "food": {
+    "refrigerator_id": 1,
+    "name": "Sándwich jamón y queso",
+    "category": "Preparados",
+    "quantity": "1.00",
+    "unit": "pz",
+    "purchase_date": "2026-10-14",
+    "expiration_date": "2026-10-16",
+    "status": "expiring",
+    "id": 12,
+    "created_at": "2026-10-15T01:48:20.357137",
+    "updated_at": "2026-10-15T01:48:20.357143"
+  },
+  "images": [
+    {
+      "food_id": 12,
+      "ticket_id": 3,
+      "image_url": "http://localhost:9000/fastapi-images/tickets/3f0c45b9302645d6aca2b4cc3b4d81ea.png",
+      "image_type": "ticket",
+      "ocr_extracted_text": "Sándwich jamón y queso x1.0 pz $42.00",
+      "ai_analysis": {
+        "price": 42.0,
+        "store": "OXXO",
+        "source": "agente-mcp"
+      },
+      "id": 23
+    },
+    {
+      "food_id": 12,
+      "ticket_id": 3,
+      "image_url": "http://localhost:9000/fastapi-images/foods/8cfa3cd7ba074009a3f4bbd24a735dac.png",
+      "image_type": "food",
+      "ocr_extracted_text": null,
+      "ai_analysis": {
+        "price": 42.0,
+        "store": "OXXO",
+        "source": "agente-mcp"
+      },
+      "id": 24
+    }
+  ]
+}
+
+>>> marcar_ticket_procesado({"ticket_id": 3})
+{
+  "user_id": 1,
+  "refrigerator_id": 1,
+  "store_name": "OXXO",
+  "purchase_date": "2026-10-14",
+  "ticket_image_url": "http://localhost:9000/fastapi-images/tickets/3f0c45b9302645d6aca2b4cc3b4d81ea.png",
+  "raw_text": "archivo: ticket_oxxo.png\nOXXO - Calle Madero 301, Centro\n2 AGUA NATURAL 1.5L 34.00\n1 MANTEQUILLA 90G 24.50\n1 SANDWICH JAMON QUESO 42.00\nTOTAL $100.50",
+  "processed_at": true,
+  "id": 3,
+  "created_at": "2026-10-15T01:48:19.862238"
+}
+
+>>> resumen_refrigerador({"refrigerator_id": 1})
+{
+  "tickets": [
+    {
+      "id": 1,
+      "store_name": "Soriana Hiper",
+      "purchase_date": "2026-10-12",
+      "processed_at": true
+    },
+    {
+      "id": 2,
+      "store_name": "Walmart Supercenter",
+      "purchase_date": "2026-10-09",
+      "processed_at": true
+    },
+    {
+      "id": 3,
+      "store_name": "OXXO",
+      "purchase_date": "2026-10-14",
+      "processed_at": true
+    }
+  ],
+  "alimentos": [
+    {
+      "id": 1,
+      "name": "Leche entera Lala 1L",
+      "quantity": "2.00",
+      "unit": "L",
+      "expiration_date": "2026-10-19",
+      "status": "fresh"
+    },
+    {
+      "id": 2,
+      "name": "Huevo blanco 12 pz",
+      "quantity": "12.00",
+      "unit": "pz",
+      "expiration_date": "2026-11-02",
+      "status": "fresh"
+    },
+    {
+      "id": 3,
+      "name": "Jamón de pavo FUD 250g",
+      "quantity": "0.25",
+      "unit": "kg",
+      "expiration_date": "2026-10-19",
+      "status": "fresh"
+    },
+    {
+      "id": 4,
+      "name": "Yogurt natural 1kg",
+      "quantity": "1.00",
+      "unit": "kg",
+      "expiration_date": "2026-10-26",
+      "status": "fresh"
+    },
+    {
+      "id": 5,
+      "name": "Pechuga de pollo",
+      "quantity": "1.20",
+      "unit": "kg",
+      "expiration_date": "2026-10-11",
+      "status": "expired"
+    },
+    {
+      "id": 6,
+      "name": "Jitomate saladet",
+      "quantity": "1.00",
+      "unit": "kg",
+      "expiration_date": "2026-10-16",
+      "status": "expiring"
+    },
+    {
+      "id": 7,
+      "name": "Lechuga romana",
+      "quantity": "1.00",
+      "unit": "pz",
+      "expiration_date": "2026-10-14",
+      "status": "expiring"
+    },
+    {
+      "id": 8,
+      "name": "Queso panela 400g",
+      "quantity": "0.40",
+      "unit": "kg",
+      "expiration_date": "2026-10-19",
+      "status": "fresh"
+    },
+    {
+      "id": 9,
+      "name": "Refresco de cola 2L",
+      "quantity": "4.00",
+      "unit": "L",
+      "expiration_date": "2027-04-07",
+      "status": "fresh"
+    },
+    {
+      "id": 10,
+      "name": "Agua natural 1.5L",
+      "quantity": "3.00",
+      "unit": "L",
+      "expiration_date": "2027-10-14",
+      "status": "fresh"
+    },
+    {
+      "id": 11,
+      "name": "Mantequilla 90g",
+      "quantity": "0.09",
+      "unit": "kg",
+      "expiration_date": "2026-12-13",
+      "status": "fresh"
+    },
+    {
+      "id": 12,
+      "name": "Sándwich jamón y queso",
+      "quantity": "1.00",
+      "unit": "pz",
+      "expiration_date": "2026-10-16",
+      "status": "expiring"
+    }
+  ],
+  "total_imagenes": 24
+}
+
+>>> subir_imagen({"image_path": "otros/hola_mundo.png"})
+{
+  "bucket": "fastapi-images",
+  "url": "http://localhost:9000/fastapi-images/otros/fcd0db327f40440d8dc5d6a0a844aae4.png",
+  "key": "otros/fcd0db327f40440d8dc5d6a0a844aae4.png"
+}
+
